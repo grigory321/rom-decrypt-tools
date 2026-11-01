@@ -1,0 +1,41 @@
+{
+  "name": "rom-studio",
+  "version": "1.0.3",
+  "type": "module",
+  "description": "Browser-based ROM decryption, conversion, extraction and game audio playback.",
+  "license": "MIT",
+  "bin": {
+    "rom-studio": "scripts/start.mjs"
+  },
+  "files": [
+    "dist/",
+    "vendor/",
+    "scripts/start.mjs",
+    "serve.cjs",
+    "Start-ROM-Studio.cmd",
+    "README.md",
+    "LICENSE.txt"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "check": "node scripts/check.mjs",
+    "format": "prettier --write src public/*.html public/*.css scripts tests *.json *.cjs *.md",
+    "test": "node scripts/test.mjs",
+    "release": "node scripts/release.mjs",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.43",
+    "prettier": "3.9.10",
+    "typescript": "7.0.2"
+  }
+}
