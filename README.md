@@ -179,18 +179,6 @@ Use Node.js 20 or newer. CI uses Node.js 24.
 
 The npm package contains the built application, launcher and required license/source files. Development sources and tests remain in the source ZIP.
 
-### GitHub Pages
-
-1. Extract the source ZIP into your repository root, including `.github/`.
-2. In Settings → Pages → Source, select **GitHub Actions**.
-3. Confirm that **Check source** passes, then run **Publish GitHub Pages** from Actions.
-
-The workflow is manual and must exist on the default branch before its first run.
-For prebuilt releases, publish the contents of `dist/`, including `.nojekyll`,
-from your Pages branch. Relative asset URLs support repository subpaths.
-
----
-
 ### License
 
 ROM Studio is released under the **MIT License** (`LICENSE.txt`).
@@ -383,18 +371,6 @@ npmパッケージにはビルド済みアプリ、起動用ファイル、必�
 - `tests/`: 自動回帰テストおよび検証用合成フィクスチャ
 - `.github/workflows/`: コード検査とGitHub Pagesの手動公開ワークフロー
 - `dist/`: ビルド成果物（GitHub Pages等の静的ホスティングにそのまま配置可能）
-
----
-
-### GitHub Pages
-
-1. ソースZIPを展開し、`.github/` を含めてリポジトリのルートへ配置します。
-2. Settings → Pages → Sourceで **GitHub Actions** を選択します。
-3. **Check source** の成功を確認し、Actionsから **Publish GitHub Pages** を手動実行します。
-
-初回は既定ブランチにワークフローが必要です。
-ビルド済みJS版は `dist/` の中身を `.nojekyll` も含めて公開用ブランチへ配置します。
-素材は相対URLで読み込むため、リポジトリ配下のパスでも動作します。
 
 ---
 

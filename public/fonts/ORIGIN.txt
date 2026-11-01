@@ -1,0 +1,14 @@
+Golos Text
+Copyright 2019 The Golos Text Project Authors.
+License: SIL Open Font License 1.1; see OFL.txt.
+
+Variable WOFF2, weights 400–800, Cyrillic and Latin subsets.
+Downloaded from Google Fonts' official distribution on 2026-10-31.
+
+https://fonts.google.com/specimen/Golos+Text
+https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcExd8hLxR.woff2
+https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcExN8hA.woff2
+https://github.com/google/fonts/tree/main/ofl/golostext
+
+Font files are served by this application. There are no runtime requests
+to Google Fonts. Unsupported glyphs use the operating system's font.
