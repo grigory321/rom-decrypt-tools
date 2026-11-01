@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.build/
+.dist-previous/
+coverage/
+outputs/
+work/
+roms/
+dumps/
+keys/
+.env
+.env.*
+*.log
+*.tgz
+.DS_Store
+Thumbs.db
+releases/

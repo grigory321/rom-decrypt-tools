@@ -1,0 +1,123 @@
+.button,
+.icon-button,
+.workspace-tab,
+.hardware-option,
+.track-play,
+.play-main,
+.upload-area,
+.file-drop {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+.button:active:not(:disabled),
+.play-main:active:not(:disabled),
+.upload-area:active:not(:disabled),
+.file-drop:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+.workspace:not([hidden]) .workspace-device-art {
+  animation: device-arrive 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.workspace:not([hidden]) .workspace-intro {
+  animation: surface-arrive 350ms ease both;
+}
+.extension-group,
+.toast,
+dialog[open] {
+  animation: surface-arrive 230ms ease both;
+}
+.operation-progress progress::-webkit-progress-value {
+  transition: width 180ms ease-out;
+}
+[data-progress-state='indeterminate'] .progress-shimmer {
+  animation: progress-travel 1.6s ease-in-out infinite;
+}
+@media (hover: hover) and (pointer: fine) {
+  .upload-area:hover:not(:disabled),
+  button.file-drop:hover:not(:disabled) {
+    background: #fff2c7;
+    box-shadow: 5px 6px 0 #b8ccc6;
+    transform: translateY(-2px);
+  }
+  .button:hover:not(:disabled),
+  .play-main:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #ffe8a1;
+  }
+  .icon-button:hover:not(:disabled) {
+    background: #dcebe2;
+    color: var(--ink);
+  }
+  .workspace-tab:hover:not(.active) {
+    background: #ecebd9;
+    color: var(--ink);
+    transform: translateX(3px);
+  }
+  .hardware-option:hover:not([aria-selected='true']) {
+    background: #e1eee4;
+  }
+  .text-button:hover {
+    color: var(--blue);
+  }
+  .track-row:hover,
+  .content-row:hover {
+    background: #f0f0de;
+  }
+  .track-row.active:hover {
+    background: #d7ebe4;
+  }
+}
+.drag .drop-symbol,
+.drag .upload-symbol {
+  transform: rotate(90deg);
+}
+.drop-symbol,
+.upload-symbol {
+  transition: transform 200ms ease;
+}
+.page-hidden *,
+.page-hidden *::before,
+.page-hidden *::after {
+  animation-play-state: paused !important;
+}
+@keyframes surface-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes device-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(6deg);
+  }
+}
+@keyframes progress-travel {
+  from {
+    transform: translateX(-105%);
+  }
+  to {
+    transform: translateX(345%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,14 @@
+ROM Studio native cartridge, RXWS and DSi adapters
+
+Format and hardware references for the cartridge, RXWS and DSi adapters.
+
+Game Boy hardware: gbdev Pan Docs (CC0)
+https://gbdev.io/pandocs/
+RXWS format: vgmstream, pinned source revision
+https://github.com/vgmstream/vgmstream/blob/6d8f68b505409399e790da888119c3f3fd6c721a/src/meta/rxws.c
+The retained vgmstream ISC notice is in adx-NOTICE.txt.
+DSi modcrypt algorithm and byte order references:
+https://github.com/TuxSH/twlnandtool/blob/master/source/crypto/crypto_twl.hpp
+https://github.com/TuxSH/twlnandtool/blob/master/source/crypto/crypto_twl_keyscrambler.hpp
+https://github.com/WinterMute/twltool/blob/master/dsi.c
+https://problemkaputt.de/gbatek-dsi-cartridge-header.htm

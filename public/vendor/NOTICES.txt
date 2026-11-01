@@ -1,0 +1,50 @@
+ROM Studio — Third-party notices
+
+Nintendo DS sequence playback
+SSEQPlayer by Naram Qashat (CyberBotX), based on the FeOS Sound System.
+License: WTFPL 2.0. See LICENSE-sseqplayer.txt.
+
+CIA templates
+3dsconv by ihaveamac. License: MIT. See LICENSE-3dsconv.txt.
+
+AES
+Copyright 2015-2018 Richard Moore.
+License: MIT. See LICENSE-aes.txt.
+
+fflate
+Copyright 2023 Arjun Barrett.
+License: MIT. See LICENSE-fflate.txt.
+
+noble-hashes
+Copyright 2022 Paul Miller.
+License: MIT. See LICENSE-noble.txt.
+
+MP3 encoding
+lamejs / LAME. License: LGPL. See LICENSE-lame.txt.
+https://lame.sourceforge.net/
+The corresponding source and full license texts are in lamejs-source.zip.
+
+SPC700 and S-DSP
+spc700-js by Mitsutaka Okazaki / digital-sound-antiques.
+License: ISC. See spc700-js/LICENSE.txt.
+Preferred TypeScript source and revision details are in vendor/spc700-js/.
+
+PS1 and PS2 audio
+eNGE SPU adaptations: MIT, enge-spu-LICENSE.txt.
+Play! BIOS and IOP references: BSD-2-Clause, play-psx-bios-LICENSE.txt
+and psf2-NOTICE.txt.
+
+ADX and HCA
+vgmstream and VGAudio references, tables and copyright notices:
+adx-NOTICE.txt and hca-NOTICE.txt.
+
+Nintendo 3DS CSEQ
+DualRip by Tetra_Sky, Copyright 2026.
+License: MIT. See cseq-NOTICE.txt.
+
+Game Boy, RXWS and DSi
+Hardware and format references: native-audio-NOTICE.txt.
+
+Golos Text
+Copyright 2019 The Golos Text Project Authors.
+License: SIL Open Font License 1.1. See ../fonts/OFL.txt.

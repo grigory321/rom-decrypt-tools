@@ -1,0 +1,4051 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#fff9ec"
+    />
+    <meta
+      name="description"
+      content="ROMの復号・変換、ファイル展開、BGM・効果音の再生と保存。日本語・英語・ロシア語対応。"
+    />
+    <title>ROM Studio — ROMの復号・変換・展開</title>
+    <link
+      rel="stylesheet"
+      href="fonts.css"
+    />
+    <link
+      rel="stylesheet"
+      href="interface.css"
+    />
+    <link
+      rel="stylesheet"
+      href="audio-deck.css"
+    />
+    <link
+      rel="stylesheet"
+      href="interface-motion.css"
+    />
+    <link
+      rel="stylesheet"
+      href="dialogs.css"
+    />
+  </head>
+  <body
+    class="mode-converter"
+    data-workspace="convert"
+  >
+    <noscript>
+      <p class="no-script">
+        JavaScriptを有効にしてください。Enable JavaScript to use ROM Studio. Для
+        работы ROM Studio включите JavaScript.
+      </p>
+    </noscript>
+    <svg
+      class="svg-defs"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol
+          id="i-plus"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 5v14M5 12h14"></path>
+        </symbol>
+        <symbol
+          id="i-check"
+          viewBox="0 0 24 24"
+        >
+          <path d="m5 12 4 4L19 6"></path>
+        </symbol>
+        <symbol
+          id="i-autoplay"
+          viewBox="0 0 24 24"
+        >
+          <path d="M3 5h18M3 10h9M3 15h7m5-4 6 5-6 5Z"></path>
+        </symbol>
+        <symbol
+          id="i-speed"
+          viewBox="0 0 24 24"
+        >
+          <path d="M4 18a9 9 0 1 1 16 0M12 13l5-6M5 12H3m18 0h-2M12 5V3"></path>
+          <circle
+            cx="12"
+            cy="13"
+            r="2"
+          ></circle>
+        </symbol>
+        <symbol
+          id="i-file"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M14 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9Z"
+          ></path>
+          <path d="M14 2v7h7M7 14h10M7 18h6"></path>
+        </symbol>
+        <symbol
+          id="i-grid"
+          viewBox="0 0 24 24"
+        >
+          <path d="M3 7h16m-4-4 4 4-4 4M21 17H5m4-4-4 4 4 4"></path>
+        </symbol>
+        <symbol
+          id="i-music"
+          viewBox="0 0 24 24"
+        >
+          <path d="M9 18V5l12-2v13M9 9l12-2"></path>
+          <ellipse
+            cx="6"
+            cy="18"
+            rx="3"
+            ry="3"
+          ></ellipse>
+          <ellipse
+            cx="18"
+            cy="16"
+            rx="3"
+            ry="3"
+          ></ellipse>
+        </symbol>
+        <symbol
+          id="i-key"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            cx="8"
+            cy="9"
+            r="5"
+          ></circle>
+          <path d="m12 13 9 9m-5-5 3-3m-6 0 3-3"></path>
+        </symbol>
+        <symbol
+          id="i-info"
+          viewBox="0 0 24 24"
+        >
+          <path d="M10 10h2v8m-3 0h6"></path>
+          <circle
+            cx="12"
+            cy="6"
+            r="1.2"
+            fill="currentColor"
+            stroke="none"
+          ></circle>
+        </symbol>
+        <symbol
+          id="i-upload"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 16V3m-5 5 5-5 5 5M3 15v5a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-5"
+          ></path>
+        </symbol>
+        <symbol
+          id="i-download"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 3v13m-5-5 5 5 5-5M3 17v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3"
+          ></path>
+        </symbol>
+        <symbol
+          id="i-search"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            cx="10"
+            cy="10"
+            r="6"
+          ></circle>
+          <path d="m15 15 6 6"></path>
+        </symbol>
+        <symbol
+          id="i-play"
+          viewBox="0 0 24 24"
+        >
+          <path d="m8 4 13 8-13 8Z"></path>
+        </symbol>
+        <symbol
+          id="i-pause"
+          viewBox="0 0 24 24"
+        >
+          <path d="M8 4v16M16 4v16"></path>
+        </symbol>
+        <symbol
+          id="i-stop"
+          viewBox="0 0 24 24"
+        >
+          <rect
+            x="5"
+            y="5"
+            width="14"
+            height="14"
+            rx="2"
+          ></rect>
+        </symbol>
+        <symbol
+          id="i-next"
+          viewBox="0 0 24 24"
+        >
+          <path d="m5 5 10 7-10 7Zm13 0v14"></path>
+        </symbol>
+        <symbol
+          id="i-prev"
+          viewBox="0 0 24 24"
+        >
+          <path d="m19 5-10 7 10 7ZM6 5v14"></path>
+        </symbol>
+        <symbol
+          id="i-volume"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11 4 5 9H2v6h3l6 5ZM16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+          ></path>
+        </symbol>
+        <symbol
+          id="i-loop"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20 9V6H4v5m16 2v5H4v-3m0-4L1 8m3 3 3-3m13 5-3 3m3-3 3 3"
+          ></path>
+        </symbol>
+        <symbol
+          id="i-x"
+          viewBox="0 0 24 24"
+        >
+          <path d="m7 7 10 10M17 7 7 17"></path>
+        </symbol>
+        <symbol
+          id="i-arrow"
+          viewBox="0 0 24 24"
+        >
+          <path d="M4 12h16m-7-7 7 7-7 7"></path>
+        </symbol>
+        <symbol
+          id="i-shield"
+          viewBox="0 0 24 24"
+        >
+          <path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6Zm-4 9 3 3 5-5"></path>
+        </symbol>
+
+        <symbol
+          id="i-folder"
+          viewBox="0 0 24 24"
+        >
+          <path d="M3 5h6l2 3h10v12H3ZM3 8h18"></path>
+        </symbol>
+        <symbol
+          id="i-code"
+          viewBox="0 0 24 24"
+        >
+          <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"></path>
+        </symbol>
+        <symbol
+          id="i-shuffle"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 5h3c5 0 7 14 12 14h3m-4-4 4 4-4 4M3 19h3c2 0 4-3 6-7s4-7 6-7h3m-4-4 4 4-4 4"
+          ></path>
+        </symbol>
+        <symbol
+          id="i-muted"
+          viewBox="0 0 24 24"
+        >
+          <path d="m11 3-6 5H2v8h3l6 5ZM16 9l6 6m0-6-6 6"></path>
+        </symbol>
+        <symbol
+          id="i-rounded-star"
+          viewBox="0 0 64 64"
+          fill="none"
+          stroke="none"
+        >
+          <path
+            d="M28.3 7.4Q32-.5 35.7 7.4l5.5 11.2q1 1.9 3.2 2.2l12 1.8q8.4 1.2 2.3 7.1L50 38.2q-1.6 1.5-1.2 3.7l2 11.9q1.4 8.3-6 4.4L34 52.5q-2-1-4 0l-10.8 5.7q-7.4 3.9-6-4.4l2-11.9q.4-2.2-1.2-3.7l-8.7-8.5q-6.1-5.9 2.3-7.1l12-1.8q2.2-.3 3.2-2.2Z"
+            fill="currentColor"
+          ></path>
+          <path
+            d="m25 22 6-13"
+            stroke="#fff9c8"
+            stroke-width="4"
+            stroke-linecap="round"
+          ></path>
+        </symbol>
+        <symbol
+          id="ctr-hardware"
+          viewBox="0 0 480 440"
+          fill="none"
+          stroke="none"
+        >
+          <defs>
+            <clipPath id="ctr-upper-clip">
+              <rect
+                x="124"
+                y="46"
+                width="232"
+                height="139.2"
+                rx="1"
+              ></rect>
+            </clipPath>
+            <clipPath id="ctr-lower-clip">
+              <rect
+                x="147.2"
+                y="246"
+                width="185.6"
+                height="139.2"
+                rx="1"
+              ></rect>
+            </clipPath>
+          </defs>
+          <g stroke-linejoin="round">
+            <rect
+              x="60.5"
+              y="24"
+              width="359"
+              height="191"
+              rx="17"
+              fill="#195968"
+              stroke="#154c5b"
+              stroke-width="1"
+            ></rect>
+            <rect
+              x="60.5"
+              y="18.5"
+              width="359"
+              height="190.5"
+              rx="17"
+              fill="#509ba8"
+              stroke="#226575"
+              stroke-width="1"
+            ></rect>
+            <path
+              d="M78 19.5h324c8.8 0 16.5 7.3 16.5 16"
+              fill="none"
+              stroke="#8dc6cb"
+              stroke-width=".8"
+            ></path>
+            <rect
+              x="64.5"
+              y="22.5"
+              width="351"
+              height="182.5"
+              rx="13.5"
+              fill="#141c20"
+              stroke="#0d1519"
+              stroke-width=".8"
+            ></rect>
+            <path
+              d="M79 24h322c6.7 0 12.2 5.6 12.2 12.5"
+              fill="none"
+              stroke="#36444a"
+              stroke-width=".7"
+            ></path>
+            <rect
+              x="134.3"
+              y="51.3"
+              width="211.4"
+              height="128.8"
+              rx="1.8"
+              fill="#060c0f"
+              stroke="#344149"
+              stroke-width=".7"
+            ></rect>
+            <rect
+              x="136.76"
+              y="53.74"
+              width="206.48"
+              height="123.888"
+              rx=".7"
+              fill="#f3f7fa"
+            ></rect>
+            <circle
+              cx="240"
+              cy="35.5"
+              r="3.9"
+              fill="#070d10"
+              stroke="#4a545b"
+              stroke-width=".7"
+            ></circle>
+            <circle
+              cx="240"
+              cy="35.5"
+              r="2.05"
+              fill="#19323e"
+            ></circle>
+            <circle
+              cx="239.4"
+              cy="34.9"
+              r=".55"
+              fill="#7b9da9"
+            ></circle>
+            <g
+              fill="#080f13"
+              stroke="#29363b"
+              stroke-width=".55"
+            >
+              <circle
+                cx="80"
+                cy="39"
+                r="2.25"
+              ></circle>
+              <circle
+                cx="400"
+                cy="39"
+                r="2.25"
+              ></circle>
+              <circle
+                cx="80"
+                cy="188"
+                r="2.25"
+              ></circle>
+              <circle
+                cx="400"
+                cy="188"
+                r="2.25"
+              ></circle>
+            </g>
+            <circle
+              cx="88.5"
+              cy="103"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="88.5"
+              cy="109"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="88.5"
+              cy="115"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="94.5"
+              cy="103"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="94.5"
+              cy="109"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="94.5"
+              cy="115"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="385.5"
+              cy="103"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="385.5"
+              cy="109"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="385.5"
+              cy="115"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="391.5"
+              cy="103"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="391.5"
+              cy="109"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <circle
+              cx="391.5"
+              cy="115"
+              r="1.35"
+              fill="#060b0e"
+              stroke="#3d494e"
+              stroke-width=".45"
+            ></circle>
+            <g
+              fill="#90a6ac"
+              text-anchor="middle"
+              font-family="Arial,sans-serif"
+            >
+              <text
+                x="402"
+                y="55.5"
+                font-size="5.3"
+              >
+                3D
+              </text>
+              <text
+                x="402"
+                y="104"
+                font-size="3.8"
+              >
+                OFF
+              </text>
+            </g>
+            <rect
+              x="400.2"
+              y="63"
+              width="3.6"
+              height="32"
+              rx="1.8"
+              fill="#050c10"
+              stroke="#45555c"
+              stroke-width=".6"
+            ></rect>
+            <rect
+              x="397.5"
+              y="74"
+              width="9"
+              height="9.5"
+              rx="1.5"
+              fill="#284653"
+              stroke="#66818a"
+              stroke-width=".6"
+            ></rect>
+            <path
+              d="M399.2 76.5h5.6m-5.6 2h5.6m-5.6 2h5.6"
+              stroke="#9aacb0"
+              stroke-width=".5"
+            ></path>
+            <rect
+              x="82"
+              y="207"
+              width="316"
+              height="18.5"
+              rx="8.8"
+              fill="#619fab"
+              stroke="#225b6d"
+              stroke-width=".8"
+            ></rect>
+            <path
+              d="M92 210h296"
+              stroke="#a0cbd0"
+              stroke-width="1"
+              fill="none"
+            ></path>
+            <path
+              d="M94 223h292"
+              stroke="#377889"
+              stroke-width="1.4"
+              fill="none"
+            ></path>
+            <path
+              d="M110 209v14m260-14v14"
+              stroke="#245d70"
+              stroke-width="1.3"
+            ></path>
+            <rect
+              x="60.5"
+              y="207.5"
+              width="49"
+              height="20"
+              rx="7"
+              fill="#67a5b0"
+              stroke="#296779"
+              stroke-width=".8"
+            ></rect>
+            <rect
+              x="370.5"
+              y="207.5"
+              width="49"
+              height="20"
+              rx="7"
+              fill="#67a5b0"
+              stroke="#296779"
+              stroke-width=".8"
+            ></rect>
+            <path
+              d="M67 210h36m274 0h36"
+              stroke="#a6cdd0"
+              stroke-width=".8"
+            ></path>
+            <rect
+              x="402.2"
+              y="211.5"
+              width="6.4"
+              height="3.1"
+              rx="1.1"
+              fill="#bed5bb"
+              stroke="#3a727e"
+              stroke-width=".55"
+            ></rect>
+            <rect
+              x="59.5"
+              y="226"
+              width="361"
+              height="195"
+              rx="18.5"
+              fill="#286574"
+              stroke="#1e5261"
+              stroke-width="1"
+            ></rect>
+            <rect
+              x="59.5"
+              y="220.5"
+              width="361"
+              height="192.8"
+              rx="18.5"
+              fill="#70afb8"
+              stroke="#327585"
+              stroke-width=".9"
+            ></rect>
+            <path
+              d="M78 222h324c9 0 16 7.6 17 17"
+              stroke="#acd4d5"
+              stroke-width=".9"
+              fill="none"
+            ></path>
+            <path
+              d="M61 394c0 10 7.6 17.5 18 17.5h322c7.8 0 14-4.8 16.9-11.8"
+              stroke="#8cc4c9"
+              stroke-width=".65"
+              fill="none"
+            ></path>
+            <path
+              d="M77 417.7h325"
+              stroke="#4c8391"
+              stroke-width=".8"
+              fill="none"
+            ></path>
+            <rect
+              x="149.5"
+              y="244.2"
+              width="181"
+              height="140.5"
+              rx="4.5"
+              fill="#5a98a4"
+              stroke="#96c5cb"
+              stroke-width=".65"
+            ></rect>
+            <rect
+              x="154.9"
+              y="250.4"
+              width="170.2"
+              height="129"
+              rx="1.7"
+              fill="#25434f"
+              stroke="#3e737f"
+              stroke-width=".6"
+            ></rect>
+            <rect
+              x="157.408"
+              y="252.94"
+              width="165.184"
+              height="123.888"
+              rx=".7"
+              fill="#f1f6f8"
+            ></rect>
+            <circle
+              cx="103.5"
+              cy="271"
+              r="21.7"
+              fill="#528e9c"
+              stroke="#98c9ce"
+              stroke-width=".8"
+            ></circle>
+            <circle
+              cx="103.5"
+              cy="271.8"
+              r="18"
+              fill="#447d8b"
+            ></circle>
+            <circle
+              cx="103.5"
+              cy="268.5"
+              r="16.4"
+              fill="#c9d1cd"
+              stroke="#738e94"
+              stroke-width=".75"
+            ></circle>
+            <ellipse
+              cx="103.5"
+              cy="268.2"
+              rx="13.1"
+              ry="12.9"
+              fill="#b7c3bf"
+              stroke="#dde5df"
+              stroke-width=".8"
+            ></ellipse>
+            <path
+              d="M92.3 273.5a12.9 12.9 0 0 0 22.4 0"
+              fill="none"
+              stroke="#e3e8e1"
+              stroke-width=".6"
+            ></path>
+            <path
+              d="M97 323h13v12.5h12.5v13H110V361H97v-12.5H84.5v-13H97Z"
+              fill="#3c7d8a"
+              stroke="#91bdc5"
+              stroke-width=".8"
+            ></path>
+            <path
+              d="M97 321.8h13v12.5h12.5v13H110v12.5H97v-12.5H84.5v-13H97Z"
+              fill="#285f6d"
+              stroke="#1b4a59"
+              stroke-width=".8"
+            ></path>
+            <path
+              d="M98.3 333v-9.8h10.4m2.8 12.4h9.6m-35.1 0v10.5"
+              fill="none"
+              stroke="#63939b"
+              stroke-width=".65"
+            ></path>
+            <g transform="translate(374 278)">
+              <circle
+                cy="1.3"
+                r="10.1"
+                fill="#367c88"
+              ></circle>
+              <circle
+                r="9.3"
+                fill="#205864"
+                stroke="#184751"
+                stroke-width=".85"
+              ></circle>
+              <path
+                d="M-6.1-6.1a8.6 8.6 0 0 1 12.2 0"
+                fill="none"
+                stroke="#6396a0"
+                stroke-width=".65"
+              ></path>
+              <text
+                x="0"
+                y="3.1"
+                text-anchor="middle"
+                fill="#d7e7e5"
+                font-family="Arial,sans-serif"
+                font-size="9"
+                font-weight="500"
+              >
+                X
+              </text>
+            </g>
+            <g transform="translate(354 298)">
+              <circle
+                cy="1.3"
+                r="10.1"
+                fill="#367c88"
+              ></circle>
+              <circle
+                r="9.3"
+                fill="#205864"
+                stroke="#184751"
+                stroke-width=".85"
+              ></circle>
+              <path
+                d="M-6.1-6.1a8.6 8.6 0 0 1 12.2 0"
+                fill="none"
+                stroke="#6396a0"
+                stroke-width=".65"
+              ></path>
+              <text
+                x="0"
+                y="3.1"
+                text-anchor="middle"
+                fill="#d7e7e5"
+                font-family="Arial,sans-serif"
+                font-size="9"
+                font-weight="500"
+              >
+                Y
+              </text>
+            </g>
+            <g transform="translate(394 298)">
+              <circle
+                cy="1.3"
+                r="10.1"
+                fill="#367c88"
+              ></circle>
+              <circle
+                r="9.3"
+                fill="#205864"
+                stroke="#184751"
+                stroke-width=".85"
+              ></circle>
+              <path
+                d="M-6.1-6.1a8.6 8.6 0 0 1 12.2 0"
+                fill="none"
+                stroke="#6396a0"
+                stroke-width=".65"
+              ></path>
+              <text
+                x="0"
+                y="3.1"
+                text-anchor="middle"
+                fill="#d7e7e5"
+                font-family="Arial,sans-serif"
+                font-size="9"
+                font-weight="500"
+              >
+                A
+              </text>
+            </g>
+            <g transform="translate(374 318)">
+              <circle
+                cy="1.3"
+                r="10.1"
+                fill="#367c88"
+              ></circle>
+              <circle
+                r="9.3"
+                fill="#205864"
+                stroke="#184751"
+                stroke-width=".85"
+              ></circle>
+              <path
+                d="M-6.1-6.1a8.6 8.6 0 0 1 12.2 0"
+                fill="none"
+                stroke="#6396a0"
+                stroke-width=".65"
+              ></path>
+              <text
+                x="0"
+                y="3.1"
+                text-anchor="middle"
+                fill="#d7e7e5"
+                font-family="Arial,sans-serif"
+                font-size="9"
+                font-weight="500"
+              >
+                B
+              </text>
+            </g>
+            <rect
+              x="153"
+              y="390"
+              width="174"
+              height="15.4"
+              rx="1.8"
+              fill="#86bbc1"
+              stroke="#46838e"
+              stroke-width=".75"
+            ></rect>
+            <path
+              d="M154 391h172m-115 0v13.4m58-13.4v13.4"
+              stroke="#a8cdd0"
+              stroke-width=".6"
+              fill="none"
+            ></path>
+            <path
+              d="M211.8 392v11.7m56.4-11.7v11.7"
+              stroke="#5c98a3"
+              stroke-width=".6"
+            ></path>
+            <g
+              fill="#2f6572"
+              font-family="Arial,sans-serif"
+              font-size="5.3"
+              font-weight="500"
+              text-anchor="middle"
+              letter-spacing=".3"
+            >
+              <text
+                x="182"
+                y="400.2"
+              >
+                SELECT
+              </text>
+              <text
+                x="298"
+                y="400.2"
+              >
+                START
+              </text>
+            </g>
+            <path
+              d="m234.5 397.3 5.5-4.1 5.5 4.1m-9.3-1.4v6.2h7.6v-6.2m-4.8 6.2v-3.2h2v3.2"
+              stroke="#376672"
+              stroke-width=".8"
+              stroke-linecap="round"
+              fill="none"
+            ></path>
+            <circle
+              cx="136"
+              cy="395.9"
+              r="1.05"
+              fill="#2c5d6a"
+            ></circle>
+            <text
+              x="130.5"
+              y="397.2"
+              text-anchor="end"
+              fill="#356d7a"
+              font-family="Arial,sans-serif"
+              font-size="3.9"
+              letter-spacing=".2"
+            >
+              MIC
+            </text>
+            <rect
+              x="368.5"
+              y="379.5"
+              width="25.5"
+              height="10.8"
+              rx="5.4"
+              fill="#5b96a4"
+              stroke="#397585"
+              stroke-width=".7"
+            ></rect>
+            <path
+              d="M381.25 382.1v3.2m-2.1-2.4a3.1 3.1 0 1 0 4.2 0"
+              stroke="#214f60"
+              stroke-width=".85"
+              stroke-linecap="round"
+              fill="none"
+            ></path>
+            <text
+              x="381.25"
+              y="399"
+              text-anchor="middle"
+              fill="#2a6373"
+              font-family="Arial,sans-serif"
+              font-size="4.4"
+              letter-spacing=".45"
+            >
+              POWER
+            </text>
+            <rect
+              x="393.2"
+              y="415.4"
+              width="4.3"
+              height="2.5"
+              rx=".7"
+              fill="#69c5ef"
+            ></rect>
+            <rect
+              x="401"
+              y="415.4"
+              width="4.3"
+              height="2.5"
+              rx=".7"
+              fill="#d9ae62"
+            ></rect>
+            <path
+              d="M420 286v23"
+              stroke="#285c6b"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            ></path>
+            <rect
+              x="419.1"
+              y="293"
+              width="2.2"
+              height="8.5"
+              rx=".7"
+              fill="#8dbfc5"
+              stroke="#2c6676"
+              stroke-width=".45"
+            ></rect>
+            <path
+              d="M59.7 257v25"
+              stroke="#2b6170"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            ></path>
+            <rect
+              x="58.9"
+              y="263"
+              width="2"
+              height="8"
+              rx=".7"
+              fill="#8bbcc1"
+            ></rect>
+            <rect
+              x="236.8"
+              y="414.6"
+              width="6.4"
+              height="3.8"
+              rx="1.9"
+              fill="#173b49"
+              stroke="#6a9aa5"
+              stroke-width=".6"
+            ></rect>
+          </g>
+        </symbol>
+        <symbol
+          id="ctr-convert"
+          viewBox="0 0 480 440"
+          fill="none"
+          stroke="none"
+        >
+          <use href="#ctr-hardware"></use>
+          <g transform="matrix(.89 0 0 .89 26.4 12.8)">
+            <g clip-path="url(#ctr-upper-clip)">
+              <rect
+                x="124"
+                y="46"
+                width="232"
+                height="139.2"
+                fill="#f3f7fa"
+              ></rect>
+              <path
+                d="M124 149c70-26 135 25 232-25v62H124Z"
+                fill="#e8e1f7"
+                opacity=".62"
+              ></path>
+              <path
+                d="M124 68h232"
+                stroke="#c6d5df"
+                stroke-width=".7"
+              ></path>
+              <circle
+                cx="135"
+                cy="57.4"
+                r="2.2"
+                fill="#8074b2"
+              ></circle>
+              <text
+                x="142"
+                y="59.7"
+                fill="#657b8c"
+                font-family="Arial,sans-serif"
+                font-size="6.1"
+                font-weight="600"
+                letter-spacing=".8"
+              >
+                ROM CONVERSION
+              </text>
+              <g
+                stroke="#99aebb"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              >
+                <path d="M336 60v-2m4 2v-4m4 4v-6"></path>
+              </g>
+              <ellipse
+                cx="240"
+                cy="147"
+                rx="80"
+                ry="7"
+                fill="#b5bed0"
+                opacity=".23"
+              ></ellipse>
+              <g transform="translate(161 78) rotate(-5 22 34)">
+                <path
+                  d="M1 2h31l12 12v51H1Z"
+                  fill="#9a9ab9"
+                  opacity=".22"
+                  transform="translate(0 2)"
+                ></path>
+                <path
+                  d="M0 0h31l12 12v51H0Z"
+                  fill="#f7f9fc"
+                  stroke="#a6afc0"
+                  stroke-width=".8"
+                ></path>
+                <path
+                  d="M31 0v12h12"
+                  fill="#e2dcf3"
+                  stroke="#a6afc0"
+                  stroke-width=".8"
+                ></path>
+                <rect
+                  x="7"
+                  y="19"
+                  width="29"
+                  height="23"
+                  rx="2.5"
+                  fill="#d8d1ee"
+                ></rect>
+                <path
+                  d="M14 25h15m-15 5h15m-15 5h10"
+                  stroke="#8b7ab0"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                ></path>
+                <path
+                  d="M8 50h27m-27 5h18"
+                  stroke="#c1c9d5"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                ></path>
+              </g>
+              <g transform="translate(276 80) rotate(5 21 31)">
+                <path
+                  d="M1 2h39v58H1Z"
+                  fill="#8f9eb3"
+                  opacity=".24"
+                  transform="translate(0 2)"
+                ></path>
+                <path
+                  d="M0 0h35l7 8v51H0Z"
+                  fill="#ecf3f7"
+                  stroke="#8fa6b8"
+                  stroke-width=".9"
+                ></path>
+                <path
+                  d="M35 0v8h7"
+                  fill="#bfd7e6"
+                  stroke="#8fa6b8"
+                  stroke-width=".8"
+                ></path>
+                <rect
+                  x="6"
+                  y="14"
+                  width="30"
+                  height="24"
+                  rx="2.2"
+                  fill="#a9cbdc"
+                  stroke="#91b7ca"
+                  stroke-width=".6"
+                ></rect>
+                <path
+                  d="M12 31v-9h18v9m-14-9v9m5-9v9m5-9v9"
+                  stroke="#f2fbfc"
+                  stroke-width="1.1"
+                  fill="none"
+                ></path>
+                <text
+                  x="21"
+                  y="49"
+                  text-anchor="middle"
+                  fill="#5a788e"
+                  font-family="Arial,sans-serif"
+                  font-size="6"
+                  font-weight="600"
+                  letter-spacing=".8"
+                >
+                  CIA
+                </text>
+                <path
+                  d="M5 55h31"
+                  stroke="#a7bcc9"
+                  stroke-width=".7"
+                ></path>
+              </g>
+              <g
+                fill="none"
+                stroke="#8275aa"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M218 103h42l-7-7m7 7-7 7"></path>
+                <path d="M262 124h-42l7-7m-7 7 7 7"></path>
+              </g>
+              <g fill="#a5a0bd">
+                <circle
+                  cx="234"
+                  cy="152"
+                  r="1.6"
+                ></circle>
+                <circle
+                  cx="240"
+                  cy="152"
+                  r="1.6"
+                ></circle>
+                <circle
+                  cx="246"
+                  cy="152"
+                  r="1.6"
+                ></circle>
+              </g>
+
+              <path
+                d="M125 47h230"
+                stroke="#fff"
+                stroke-opacity=".65"
+                stroke-width=".65"
+              ></path>
+            </g>
+          </g>
+          <g transform="matrix(.89 0 0 .89 26.4 34)">
+            <g clip-path="url(#ctr-lower-clip)">
+              <rect
+                x="147.2"
+                y="246"
+                width="185.6"
+                height="139.2"
+                fill="#f1f6f8"
+              ></rect>
+              <path
+                d="M148 268h184m-184 76h184"
+                stroke="#c5d4df"
+                stroke-width=".65"
+              ></path>
+              <g fill="#8195a3">
+                <rect
+                  x="156"
+                  y="256"
+                  width="9"
+                  height="5"
+                  rx=".8"
+                ></rect>
+                <rect
+                  x="167"
+                  y="255"
+                  width="1.5"
+                  height="7"
+                  rx=".6"
+                ></rect>
+                <circle
+                  cx="318"
+                  cy="258.5"
+                  r="2.6"
+                ></circle>
+              </g>
+              <path
+                d="M310 261v-2m-3 2v-3.8m-3 3.8v-5.6"
+                stroke="#89a7b4"
+                stroke-width="1.4"
+              ></path>
+              <text
+                x="240"
+                y="260.5"
+                text-anchor="middle"
+                fill="#697e8d"
+                font-family="Arial,sans-serif"
+                font-size="5.8"
+                letter-spacing=".5"
+              >
+                HOME MENU
+              </text>
+              <g transform="translate(181 301)">
+                <path
+                  d="M-24-18v-7h7m34 0h7v7m0 30v7h-7m-34 0h-7v-7"
+                  stroke="#6cbfc6"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  fill="none"
+                ></path>
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#7cbdc6"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#e8e1f7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#8074b2"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-10-5H9L4-10m5 5L4 0M10 6H-9l5-5m-5 5 5 5"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#456b7b"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONVERT
+                </text>
+              </g>
+              <g transform="translate(240 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dceee6"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#518b7b"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-11-7v-4h9l4 4h10v17h-23Zm0 3h23l-3 14H-11"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONTENTS
+                </text>
+              </g>
+              <g transform="translate(299 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dcebf7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#5285a8"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-3 6v-16l14-3V4M-3-5l14-3"></path>
+                  <ellipse
+                    cx="-7"
+                    cy="7"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                  <ellipse
+                    cx="7"
+                    cy="5"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  AUDIO
+                </text>
+              </g>
+              <rect
+                x="177"
+                y="353"
+                width="126"
+                height="20"
+                rx="4.2"
+                fill="#f9fbfc"
+                stroke="#bfced8"
+                stroke-width=".7"
+              ></rect>
+              <text
+                x="240"
+                y="365.5"
+                text-anchor="middle"
+                fill="#8074b2"
+                font-family="Arial,sans-serif"
+                font-size="6.6"
+                letter-spacing=".65"
+              >
+                OPEN CONVERTER
+              </text>
+              <path
+                d="m287 361 3 2.5-3 2.5"
+                stroke="#8074b2"
+                stroke-width=".8"
+                stroke-linecap="round"
+                fill="none"
+              ></path>
+              <g fill="#9fb2bf">
+                <circle
+                  cx="234"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="240"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="246"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+              </g>
+            </g>
+          </g>
+        </symbol>
+        <symbol
+          id="ctr-contents"
+          viewBox="0 0 480 440"
+          fill="none"
+          stroke="none"
+        >
+          <use href="#ctr-hardware"></use>
+          <g transform="matrix(.89 0 0 .89 26.4 12.8)">
+            <g clip-path="url(#ctr-upper-clip)">
+              <rect
+                x="124"
+                y="46"
+                width="232"
+                height="139.2"
+                fill="#f3f7fa"
+              ></rect>
+              <path
+                d="M124 149c70-26 135 25 232-25v62H124Z"
+                fill="#dceee6"
+                opacity=".62"
+              ></path>
+              <path
+                d="M124 68h232"
+                stroke="#c6d5df"
+                stroke-width=".7"
+              ></path>
+              <circle
+                cx="135"
+                cy="57.4"
+                r="2.2"
+                fill="#518b7b"
+              ></circle>
+              <text
+                x="142"
+                y="59.7"
+                fill="#657b8c"
+                font-family="Arial,sans-serif"
+                font-size="6.1"
+                font-weight="600"
+                letter-spacing=".8"
+              >
+                FILE CONTENTS
+              </text>
+              <g
+                stroke="#99aebb"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              >
+                <path d="M336 60v-2m4 2v-4m4 4v-6"></path>
+              </g>
+              <ellipse
+                cx="240"
+                cy="145"
+                rx="73"
+                ry="6"
+                fill="#a9bfb9"
+                opacity=".25"
+              ></ellipse>
+              <path
+                d="M240 122v22m-58 0h116m-116 0v9m58-9v9m58-9v9"
+                stroke="#8eb2a8"
+                stroke-width="1.2"
+                fill="none"
+              ></path>
+              <path
+                d="M197 87V76h34l10 10h43v48h-87Z"
+                fill="#d6b964"
+                stroke="#ae9559"
+                stroke-width=".85"
+              ></path>
+              <path
+                d="M203 85h72v42h-72Z"
+                fill="#f7faf6"
+                stroke="#c7d3cb"
+                stroke-width=".65"
+              ></path>
+              <path
+                d="M211 93h40m-40 6h51"
+                stroke="#cbd8d3"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M192 101h97l-9 35h-79Z"
+                fill="#f0d995"
+                stroke="#b3a16d"
+                stroke-width=".9"
+              ></path>
+              <path
+                d="M194 102h92"
+                stroke="#fff4cc"
+                stroke-width="1"
+              ></path>
+              <path
+                d="M233 116h17m-17 4h11"
+                stroke="#bc9d52"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              ></path>
+              <g transform="translate(171 153)">
+                <path
+                  d="M0 0h13l6 6v17H0Z"
+                  fill="#d5cdec"
+                  stroke="#a295bc"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M13 0v6h6"
+                  fill="#f1f6f5"
+                  stroke="#a295bc"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M4 12h10m-10 4h7"
+                  stroke="#fff"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                ></path>
+              </g>
+              <g transform="translate(229 153)">
+                <path
+                  d="M0 0h13l6 6v17H0Z"
+                  fill="#c8deec"
+                  stroke="#8faec1"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M13 0v6h6"
+                  fill="#f1f6f5"
+                  stroke="#8faec1"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M4 12h10m-10 4h7"
+                  stroke="#fff"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                ></path>
+              </g>
+              <g transform="translate(287 153)">
+                <path
+                  d="M0 0h13l6 6v17H0Z"
+                  fill="#d1e5d7"
+                  stroke="#93b39e"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M13 0v6h6"
+                  fill="#f1f6f5"
+                  stroke="#93b39e"
+                  stroke-width=".65"
+                ></path>
+                <path
+                  d="M4 12h10m-10 4h7"
+                  stroke="#fff"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                ></path>
+              </g>
+
+              <path
+                d="M125 47h230"
+                stroke="#fff"
+                stroke-opacity=".65"
+                stroke-width=".65"
+              ></path>
+            </g>
+          </g>
+          <g transform="matrix(.89 0 0 .89 26.4 34)">
+            <g clip-path="url(#ctr-lower-clip)">
+              <rect
+                x="147.2"
+                y="246"
+                width="185.6"
+                height="139.2"
+                fill="#f1f6f8"
+              ></rect>
+              <path
+                d="M148 268h184m-184 76h184"
+                stroke="#c5d4df"
+                stroke-width=".65"
+              ></path>
+              <g fill="#8195a3">
+                <rect
+                  x="156"
+                  y="256"
+                  width="9"
+                  height="5"
+                  rx=".8"
+                ></rect>
+                <rect
+                  x="167"
+                  y="255"
+                  width="1.5"
+                  height="7"
+                  rx=".6"
+                ></rect>
+                <circle
+                  cx="318"
+                  cy="258.5"
+                  r="2.6"
+                ></circle>
+              </g>
+              <path
+                d="M310 261v-2m-3 2v-3.8m-3 3.8v-5.6"
+                stroke="#89a7b4"
+                stroke-width="1.4"
+              ></path>
+              <text
+                x="240"
+                y="260.5"
+                text-anchor="middle"
+                fill="#697e8d"
+                font-family="Arial,sans-serif"
+                font-size="5.8"
+                letter-spacing=".5"
+              >
+                HOME MENU
+              </text>
+              <g transform="translate(181 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#e8e1f7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#8074b2"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-10-5H9L4-10m5 5L4 0M10 6H-9l5-5m-5 5 5 5"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONVERT
+                </text>
+              </g>
+              <g transform="translate(240 301)">
+                <path
+                  d="M-24-18v-7h7m34 0h7v7m0 30v7h-7m-34 0h-7v-7"
+                  stroke="#6cbfc6"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  fill="none"
+                ></path>
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#7cbdc6"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dceee6"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#518b7b"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-11-7v-4h9l4 4h10v17h-23Zm0 3h23l-3 14H-11"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#456b7b"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONTENTS
+                </text>
+              </g>
+              <g transform="translate(299 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dcebf7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#5285a8"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-3 6v-16l14-3V4M-3-5l14-3"></path>
+                  <ellipse
+                    cx="-7"
+                    cy="7"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                  <ellipse
+                    cx="7"
+                    cy="5"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  AUDIO
+                </text>
+              </g>
+              <rect
+                x="177"
+                y="353"
+                width="126"
+                height="20"
+                rx="4.2"
+                fill="#f9fbfc"
+                stroke="#bfced8"
+                stroke-width=".7"
+              ></rect>
+              <text
+                x="240"
+                y="365.5"
+                text-anchor="middle"
+                fill="#518b7b"
+                font-family="Arial,sans-serif"
+                font-size="6.6"
+                letter-spacing=".65"
+              >
+                OPEN CONTENTS
+              </text>
+              <path
+                d="m287 361 3 2.5-3 2.5"
+                stroke="#518b7b"
+                stroke-width=".8"
+                stroke-linecap="round"
+                fill="none"
+              ></path>
+              <g fill="#9fb2bf">
+                <circle
+                  cx="234"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="240"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="246"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+              </g>
+            </g>
+          </g>
+        </symbol>
+        <symbol
+          id="ctr-audio"
+          viewBox="0 0 480 440"
+          fill="none"
+          stroke="none"
+        >
+          <use href="#ctr-hardware"></use>
+          <g transform="matrix(.89 0 0 .89 26.4 12.8)">
+            <g clip-path="url(#ctr-upper-clip)">
+              <rect
+                x="124"
+                y="46"
+                width="232"
+                height="139.2"
+                fill="#f3f7fa"
+              ></rect>
+              <path
+                d="M124 149c70-26 135 25 232-25v62H124Z"
+                fill="#dcebf7"
+                opacity=".62"
+              ></path>
+              <path
+                d="M124 68h232"
+                stroke="#c6d5df"
+                stroke-width=".7"
+              ></path>
+              <circle
+                cx="135"
+                cy="57.4"
+                r="2.2"
+                fill="#5285a8"
+              ></circle>
+              <text
+                x="142"
+                y="59.7"
+                fill="#657b8c"
+                font-family="Arial,sans-serif"
+                font-size="6.1"
+                font-weight="600"
+                letter-spacing=".8"
+              >
+                AUDIO PLAYER
+              </text>
+              <g
+                stroke="#99aebb"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              >
+                <path d="M336 60v-2m4 2v-4m4 4v-6"></path>
+              </g>
+              <ellipse
+                cx="229"
+                cy="148"
+                rx="75"
+                ry="6"
+                fill="#a6bacc"
+                opacity=".2"
+              ></ellipse>
+              <circle
+                cx="211"
+                cy="112"
+                r="38.5"
+                fill="#aabbd1"
+                stroke="#8a9ab3"
+                stroke-width=".85"
+              ></circle>
+              <circle
+                cx="211"
+                cy="112"
+                r="32.6"
+                stroke="#ecf5f4"
+                stroke-opacity=".55"
+                stroke-width=".7"
+                fill="none"
+              ></circle>
+              <circle
+                cx="211"
+                cy="112"
+                r="27.3"
+                stroke="#7e94af"
+                stroke-opacity=".45"
+                stroke-width=".5"
+                fill="none"
+              ></circle>
+              <path
+                d="m183 86 22 20 23-28m-51 45 26-9 26 30"
+                fill="#f8f9ff"
+                opacity=".21"
+              ></path>
+              <circle
+                cx="211"
+                cy="112"
+                r="11.2"
+                fill="#e9eff5"
+                stroke="#92a8bd"
+                stroke-width=".7"
+              ></circle>
+              <circle
+                cx="211"
+                cy="112"
+                r="4.2"
+                fill="#7b91a7"
+                stroke="#dce7eb"
+                stroke-width=".6"
+              ></circle>
+              <g
+                stroke="#6c9eb9"
+                stroke-width="6"
+                stroke-linecap="round"
+              >
+                <path d="M267 134v-19"></path>
+                <path d="M277.5 134v-35"></path>
+                <path d="M288 134v-48"></path>
+                <path d="M298.5 134v-26"></path>
+                <path d="M309 134v-40"></path>
+                <path d="M319.5 134v-15"></path>
+              </g>
+              <path
+                d="M166 163h146"
+                stroke="#afc1d0"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M166 163h64"
+                stroke="#6e9ebb"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              ></path>
+              <circle
+                cx="230"
+                cy="163"
+                r="3.5"
+                fill="#f9fdff"
+                stroke="#83a2ba"
+                stroke-width=".8"
+              ></circle>
+              <path
+                d="m322 160 4 3-4 3Z"
+                fill="#7498b0"
+              ></path>
+
+              <path
+                d="M125 47h230"
+                stroke="#fff"
+                stroke-opacity=".65"
+                stroke-width=".65"
+              ></path>
+            </g>
+          </g>
+          <g transform="matrix(.89 0 0 .89 26.4 34)">
+            <g clip-path="url(#ctr-lower-clip)">
+              <rect
+                x="147.2"
+                y="246"
+                width="185.6"
+                height="139.2"
+                fill="#f1f6f8"
+              ></rect>
+              <path
+                d="M148 268h184m-184 76h184"
+                stroke="#c5d4df"
+                stroke-width=".65"
+              ></path>
+              <g fill="#8195a3">
+                <rect
+                  x="156"
+                  y="256"
+                  width="9"
+                  height="5"
+                  rx=".8"
+                ></rect>
+                <rect
+                  x="167"
+                  y="255"
+                  width="1.5"
+                  height="7"
+                  rx=".6"
+                ></rect>
+                <circle
+                  cx="318"
+                  cy="258.5"
+                  r="2.6"
+                ></circle>
+              </g>
+              <path
+                d="M310 261v-2m-3 2v-3.8m-3 3.8v-5.6"
+                stroke="#89a7b4"
+                stroke-width="1.4"
+              ></path>
+              <text
+                x="240"
+                y="260.5"
+                text-anchor="middle"
+                fill="#697e8d"
+                font-family="Arial,sans-serif"
+                font-size="5.8"
+                letter-spacing=".5"
+              >
+                HOME MENU
+              </text>
+              <g transform="translate(181 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#e8e1f7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#8074b2"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-10-5H9L4-10m5 5L4 0M10 6H-9l5-5m-5 5 5 5"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONVERT
+                </text>
+              </g>
+              <g transform="translate(240 301)">
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#bdcdd8"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dceee6"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#518b7b"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-11-7v-4h9l4 4h10v17h-23Zm0 3h23l-3 14H-11"></path>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#7d919d"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  CONTENTS
+                </text>
+              </g>
+              <g transform="translate(299 301)">
+                <path
+                  d="M-24-18v-7h7m34 0h7v7m0 30v7h-7m-34 0h-7v-7"
+                  stroke="#6cbfc6"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  fill="none"
+                ></path>
+                <rect
+                  x="-20.5"
+                  y="-19"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#6c899a"
+                  opacity=".19"
+                ></rect>
+                <rect
+                  x="-20.5"
+                  y="-22"
+                  width="41"
+                  height="41"
+                  rx="5.3"
+                  fill="#fdfefe"
+                  stroke="#7cbdc6"
+                  stroke-width=".8"
+                ></rect>
+                <rect
+                  x="-16.8"
+                  y="-18.3"
+                  width="33.6"
+                  height="33.6"
+                  rx="3.2"
+                  fill="#dcebf7"
+                ></rect>
+                <path
+                  d="M-16-13.8v-3.5h31.5"
+                  stroke="#fff"
+                  stroke-opacity=".8"
+                  stroke-width=".6"
+                  fill="none"
+                ></path>
+                <g
+                  transform="translate(0 -1.5) scale(.83)"
+                  stroke="#5285a8"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"
+                >
+                  <path d="M-3 6v-16l14-3V4M-3-5l14-3"></path>
+                  <ellipse
+                    cx="-7"
+                    cy="7"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                  <ellipse
+                    cx="7"
+                    cy="5"
+                    rx="4"
+                    ry="3"
+                  ></ellipse>
+                </g>
+                <text
+                  y="32"
+                  text-anchor="middle"
+                  fill="#456b7b"
+                  font-family="Arial,sans-serif"
+                  font-size="4.6"
+                  letter-spacing=".3"
+                >
+                  AUDIO
+                </text>
+              </g>
+              <rect
+                x="177"
+                y="353"
+                width="126"
+                height="20"
+                rx="4.2"
+                fill="#f9fbfc"
+                stroke="#bfced8"
+                stroke-width=".7"
+              ></rect>
+              <text
+                x="240"
+                y="365.5"
+                text-anchor="middle"
+                fill="#5285a8"
+                font-family="Arial,sans-serif"
+                font-size="6.6"
+                letter-spacing=".65"
+              >
+                OPEN PLAYER
+              </text>
+              <path
+                d="m287 361 3 2.5-3 2.5"
+                stroke="#5285a8"
+                stroke-width=".8"
+                stroke-linecap="round"
+                fill="none"
+              ></path>
+              <g fill="#9fb2bf">
+                <circle
+                  cx="234"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="240"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+                <circle
+                  cx="246"
+                  cy="379.4"
+                  r="1"
+                ></circle>
+              </g>
+            </g>
+          </g>
+        </symbol>
+
+        <symbol
+          id="i-chevron"
+          viewBox="0 0 24 24"
+        >
+          <path d="m6 9 6 6 6-6"></path>
+        </symbol>
+      </defs>
+    </svg>
+    <a
+      class="skip-link"
+      href="#main-content"
+      data-i18n="skipToContent"
+    ></a>
+    <header class="app-header">
+      <div class="header-inner">
+        <a
+          class="brand"
+          href="#"
+          aria-label="ROM Studio"
+        >
+          <span
+            class="brand-mark"
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 64 64"><use href="#i-rounded-star"></use></svg>
+          </span>
+          <span class="brand-title">
+            ROM
+            <span>Studio</span>
+          </span>
+        </a>
+
+        <div class="header-actions">
+          <label class="language">
+            <span
+              class="sr-only"
+              data-i18n="language"
+            ></span>
+            <select
+              id="language"
+              aria-label="Language / 言語 / Язык"
+            >
+              <option value="ja">日本語</option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+            </select>
+          </label>
+          <button
+            class="icon-button help-button"
+            data-open="guide-dialog"
+            data-title="guide"
+          >
+            <svg aria-hidden="true"><use href="#i-info"></use></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="app-shell">
+      <nav
+        class="workspace-tabs"
+        data-aria="workspaces"
+      >
+        <button
+          class="workspace-tab active"
+          id="nav-lab"
+          data-mode="convert"
+        >
+          <svg aria-hidden="true"><use href="#i-grid"></use></svg>
+          <span data-i18n="lab"></span>
+        </button>
+        <button
+          class="workspace-tab"
+          id="nav-contents"
+          data-mode="contents"
+        >
+          <svg aria-hidden="true"><use href="#i-folder"></use></svg>
+          <span data-i18n="contentsTab"></span>
+        </button>
+        <button
+          class="workspace-tab"
+          id="nav-library"
+          data-mode="audio"
+        >
+          <svg aria-hidden="true"><use href="#i-music"></use></svg>
+          <span data-i18n="library"></span>
+        </button>
+      </nav>
+      <main
+        class="app-main"
+        id="main-content"
+        tabindex="-1"
+      >
+        <div
+          class="progress-banner operation-progress"
+          id="progress-banner"
+          data-progress-state="indeterminate"
+          role="status"
+          hidden=""
+        >
+          <div class="operation-progress-heading">
+            <span
+              class="progress-emblem"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 64 64"><use href="#i-rounded-star"></use></svg>
+            </span>
+            <span
+              id="progress-label"
+              data-progress-label
+            ></span>
+            <output
+              data-progress-value
+              aria-hidden="true"
+            >
+              …
+            </output>
+          </div>
+          <div class="operation-progress-track">
+            <progress
+              id="progress"
+              max="1"
+              aria-labelledby="progress-label"
+            ></progress>
+            <span
+              class="progress-shimmer"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <button
+            type="button"
+            class="text-button"
+            id="import-cancel"
+            data-i18n="cancel"
+            hidden=""
+          ></button>
+        </div>
+        <section
+          class="workspace"
+          id="converter-workspace"
+        >
+          <div class="workspace-start">
+            <header class="workspace-heading">
+              <div class="workspace-intro">
+                <h1 data-i18n="lab"></h1>
+                <p data-i18n="convertDescription"></p>
+              </div>
+              <div
+                class="workspace-device"
+                aria-hidden="true"
+              >
+                <svg
+                  class="workspace-device-art"
+                  viewBox="0 0 480 440"
+                  width="480"
+                  height="440"
+                >
+                  <use href="#ctr-convert"></use></svg
+                ><svg
+                  class="workspace-star"
+                  viewBox="0 0 64 64"
+                >
+                  <use href="#i-rounded-star"></use>
+                </svg>
+              </div>
+            </header>
+            <section
+              class="upload-panel"
+              aria-labelledby="rom-drop-title"
+            >
+              <button
+                class="upload-area"
+                id="rom-drop"
+                type="button"
+                aria-labelledby="rom-drop-title"
+              >
+                <span
+                  class="upload-symbol"
+                  aria-hidden="true"
+                >
+                  <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+                </span>
+                <span class="upload-copy">
+                  <strong
+                    id="rom-drop-title"
+                    data-i18n="romDrop"
+                    class="upload-title"
+                  ></strong>
+                  <span
+                    data-i18n="romDropHint"
+                    class="upload-hint"
+                  ></span>
+                </span>
+              </button>
+              <input
+                type="file"
+                id="rom-input"
+                multiple=""
+                hidden=""
+              />
+            </section>
+          </div>
+
+          <div class="conversion-layout">
+            <section
+              class="queue-panel"
+              id="converter-queue"
+              hidden=""
+            >
+              <div class="panel-title queue-heading">
+                <h2>
+                  <span data-i18n="convertQueue"></span>
+                  <span
+                    class="count-pill"
+                    id="rom-count"
+                  >
+                    0
+                  </span>
+                </h2>
+                <button
+                  class="text-button"
+                  id="rom-clear"
+                  data-i18n="clearQueue"
+                ></button>
+              </div>
+              <div id="rom-list"></div>
+              <div
+                class="empty-state"
+                id="rom-empty"
+              >
+                <h3 data-i18n="convertEmpty"></h3>
+                <p data-i18n="convertEmptyHint"></p>
+              </div>
+            </section>
+            <section
+              class="conversion-output"
+              id="conversion-output"
+              hidden=""
+            >
+              <div class="conversion-selection">
+                <span data-i18n="conversionFile"></span>
+                <strong id="conversion-filename"></strong>
+              </div>
+              <div
+                id="convert-settings"
+                class="convert-settings"
+              >
+                <label
+                  class="field-label"
+                  for="rom-target"
+                  data-i18n="outputRom"
+                ></label>
+                <select id="rom-target">
+                  <option
+                    value="decrypt"
+                    data-i18n="decryptedRom"
+                  ></option>
+                  <option value="cia">.cia</option>
+                  <option value="3ds">.3ds / .cci</option>
+                </select>
+                <button
+                  class="button primary"
+                  id="convert-run"
+                >
+                  <svg><use href="#i-download"></use></svg>
+                  <span data-i18n="convertSave"></span>
+                </button>
+                <button
+                  class="button"
+                  id="convert-cancel"
+                  data-i18n="cancel"
+                  hidden=""
+                ></button>
+              </div>
+              <div
+                class="conversion-progress operation-progress"
+                id="conversion-progress"
+                data-progress-state="indeterminate"
+                role="status"
+                hidden=""
+              >
+                <div class="operation-progress-heading">
+                  <span
+                    class="progress-emblem"
+                    aria-hidden="true"
+                  >
+                    <svg viewBox="0 0 64 64">
+                      <use href="#i-rounded-star"></use>
+                    </svg>
+                  </span>
+                  <span
+                    id="conversion-status"
+                    data-progress-label
+                  ></span>
+                  <output
+                    data-progress-value
+                    aria-hidden="true"
+                  >
+                    …
+                  </output>
+                </div>
+                <div class="operation-progress-track">
+                  <progress
+                    id="conversion-bar"
+                    max="1"
+                    aria-labelledby="conversion-status"
+                  ></progress>
+                  <span
+                    class="progress-shimmer"
+                    aria-hidden="true"
+                  ></span>
+                </div>
+              </div>
+              <p
+                class="support-note"
+                data-i18n="largeFileNote"
+              ></p>
+            </section>
+          </div>
+          <details
+            class="compatibility"
+            data-compatibility=""
+          >
+            <summary>
+              <span>
+                <svg aria-hidden="true"><use href="#i-rounded-star"></use></svg>
+                <span data-i18n="systemAndFiles"></span>
+              </span>
+              <span class="compatibility-toggle">
+                <span data-i18n="viewFormats"></span>
+                <svg aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </span>
+            </summary>
+            <div
+              class="format-guide-panel"
+              data-format-guide="convert"
+            >
+              <div class="hardware-column">
+                <h2><span data-i18n="hardware"></span></h2>
+                <div
+                  class="hardware-options"
+                  role="tablist"
+                  data-aria="hardware"
+                ></div>
+              </div>
+              <div
+                class="extension-column"
+                id="formats-convert"
+                role="tabpanel"
+                tabindex="0"
+              >
+                <h2><span data-i18n="fileExtensions"></span></h2>
+                <div class="extension-groups"></div>
+              </div>
+            </div>
+          </details>
+        </section>
+        <section
+          class="workspace"
+          id="contents-workspace"
+          hidden=""
+        >
+          <div class="workspace-start">
+            <header class="workspace-heading">
+              <div class="workspace-intro">
+                <h1 data-i18n="contentsTab"></h1>
+                <p data-i18n="contentsDescription"></p>
+              </div>
+              <div
+                class="workspace-device"
+                aria-hidden="true"
+              >
+                <svg
+                  class="workspace-device-art"
+                  viewBox="0 0 480 440"
+                  width="480"
+                  height="440"
+                >
+                  <use href="#ctr-contents"></use></svg
+                ><svg
+                  class="workspace-star"
+                  viewBox="0 0 64 64"
+                >
+                  <use href="#i-rounded-star"></use>
+                </svg>
+              </div>
+            </header>
+            <div class="file-actions">
+              <button
+                type="button"
+                class="file-drop panel"
+                id="contents-drop"
+                data-aria="contentsDrop"
+              >
+                <span
+                  class="drop-symbol"
+                  aria-hidden="true"
+                >
+                  <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+                </span>
+                <span class="drop-copy">
+                  <strong
+                    class="drop-title"
+                    data-i18n="contentsDrop"
+                  ></strong>
+                  <span
+                    class="drop-description"
+                    data-i18n="contentsDropHint"
+                  ></span>
+                </span>
+              </button>
+              <button
+                class="button folder-action"
+                id="choose-contents-folder"
+              >
+                <svg aria-hidden="true"><use href="#i-folder"></use></svg>
+                <span data-i18n="chooseFolder"></span>
+              </button>
+            </div>
+          </div>
+
+          <input
+            type="file"
+            id="contents-input"
+            hidden=""
+            multiple=""
+          />
+          <input
+            type="file"
+            id="contents-folder"
+            webkitdirectory=""
+            multiple=""
+            hidden=""
+          />
+          <div
+            class="source-picker"
+            id="contents-source-picker"
+            hidden=""
+          >
+            <label
+              for="contents-file-select"
+              data-i18n="openedFile"
+            ></label>
+            <input
+              type="search"
+              id="contents-file-search"
+              data-placeholder="findOpenedFile"
+              data-aria="findOpenedFile"
+              hidden=""
+            />
+            <select id="contents-file-select"></select>
+            <button
+              class="button small secondary"
+              id="contents-audio"
+              data-i18n="listenToRom"
+              disabled=""
+            ></button>
+          </div>
+          <div
+            class="contents-file-heading"
+            id="contents-file-heading"
+            hidden=""
+          >
+            <strong id="contents-source"></strong>
+            <button
+              class="text-button"
+              id="contents-clear"
+              data-i18n="clearContents"
+            ></button>
+            <button
+              class="button small"
+              id="contents-cancel"
+              data-i18n="cancel"
+              hidden=""
+            ></button>
+          </div>
+          <div
+            id="contents-saving"
+            data-progress-state="indeterminate"
+            class="contents-saving operation-progress"
+            hidden=""
+          >
+            <div class="operation-progress-heading">
+              <span
+                class="progress-emblem"
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 64 64">
+                  <use href="#i-rounded-star"></use>
+                </svg>
+              </span>
+              <span
+                id="contents-save-label"
+                data-progress-label
+                data-i18n="savingContents"
+              ></span>
+              <output
+                id="contents-save-percent"
+                data-progress-value
+                aria-hidden="true"
+              >
+                …
+              </output>
+            </div>
+            <div class="operation-progress-track">
+              <progress
+                id="contents-save-progress"
+                max="1"
+                aria-labelledby="contents-save-label"
+              ></progress>
+              <span
+                class="progress-shimmer"
+                aria-hidden="true"
+              ></span>
+            </div>
+          </div>
+          <div
+            class="panel contents-browser"
+            id="contents-browser"
+            hidden=""
+          >
+            <div class="library-heading">
+              <h2>
+                <span data-i18n="containedFiles"></span>
+                <span
+                  id="contents-total"
+                  class="count-pill"
+                >
+                  0
+                </span>
+              </h2>
+
+              <div class="archive-actions">
+                <button
+                  class="button small secondary"
+                  id="contents-zip"
+                >
+                  <svg><use href="#i-download"></use></svg>
+                  <span data-i18n="zipSelected"></span>
+                  <span
+                    id="contents-selected"
+                    class="count-pill"
+                  >
+                    0
+                  </span>
+                </button>
+                <button
+                  class="button primary"
+                  id="contents-zip-all"
+                  disabled=""
+                >
+                  <svg><use href="#i-download"></use></svg>
+                  <span data-i18n="zipAllContents"></span>
+                </button>
+              </div>
+            </div>
+            <div class="contents-toolbar">
+              <label class="search">
+                <svg><use href="#i-search"></use></svg>
+                <input
+                  id="contents-search"
+                  type="search"
+                  data-placeholder="contentsSearch"
+                  data-aria="contentsSearch"
+                />
+              </label>
+              <select
+                id="contents-kind"
+                data-aria="contentsFilter"
+              >
+                <option
+                  value="all"
+                  data-i18n="allFiles"
+                ></option>
+                <option
+                  value="code"
+                  data-i18n="kind_code"
+                ></option>
+                <option
+                  value="romfs"
+                  data-i18n="kind_romfs"
+                ></option>
+                <option
+                  value="metadata"
+                  data-i18n="kind_metadata"
+                ></option>
+                <option
+                  value="container"
+                  data-i18n="kind_container"
+                ></option>
+                <option
+                  value="nitrofs"
+                  data-i18n="kind_nitrofs"
+                ></option>
+                <option
+                  value="file"
+                  data-i18n="kind_file"
+                ></option>
+                <option
+                  value="cartridge"
+                  data-i18n="kind_cartridge"
+                ></option>
+                <option
+                  value="audio"
+                  data-i18n="kind_audio"
+                ></option>
+              </select>
+            </div>
+            <div
+              class="empty-state"
+              id="contents-empty"
+            >
+              <svg><use href="#i-folder"></use></svg>
+              <h3 data-i18n="contentsEmpty"></h3>
+              <p data-i18n="contentsEmptyHint"></p>
+            </div>
+            <div
+              id="contents-loading"
+              data-progress-state="indeterminate"
+              class="operation-progress"
+              hidden=""
+            >
+              <div class="operation-progress-heading">
+                <span
+                  class="progress-emblem"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 64 64">
+                    <use href="#i-rounded-star"></use>
+                  </svg>
+                </span>
+                <span
+                  id="contents-loading-label"
+                  data-progress-label
+                  data-i18n="openingContents"
+                ></span>
+                <output
+                  data-progress-value
+                  aria-hidden="true"
+                >
+                  …
+                </output>
+              </div>
+              <div class="operation-progress-track">
+                <progress
+                  id="contents-loading-meter"
+                  max="1"
+                  aria-labelledby="contents-loading-label"
+                ></progress>
+                <span
+                  class="progress-shimmer"
+                  aria-hidden="true"
+                ></span>
+              </div>
+            </div>
+            <div
+              id="contents-table"
+              hidden=""
+            >
+              <div class="content-table-head">
+                <input
+                  id="contents-select-all"
+                  type="checkbox"
+                  data-aria="selectAll"
+                />
+                <span data-i18n="filePath"></span>
+                <span
+                  class="content-kind"
+                  data-i18n="type"
+                ></span>
+                <span
+                  class="content-size"
+                  data-i18n="fileSize"
+                ></span>
+                <span></span>
+              </div>
+              <div id="contents-list"></div>
+              <div
+                class="empty-state"
+                id="contents-no-matches"
+                data-i18n="noMatches"
+                hidden=""
+              ></div>
+              <div class="contents-more">
+                <button
+                  id="contents-more"
+                  class="button small"
+                  data-i18n="showMore"
+                  hidden=""
+                ></button>
+              </div>
+            </div>
+          </div>
+          <section
+            class="panel contents-preview"
+            id="contents-preview"
+            hidden=""
+          >
+            <div class="panel-title"><h2 data-i18n="hexPreview"></h2></div>
+            <strong id="contents-preview-name"></strong>
+            <pre
+              id="contents-hex"
+              tabindex="0"
+            ></pre>
+          </section>
+          <details
+            class="compatibility"
+            data-compatibility=""
+          >
+            <summary>
+              <span>
+                <svg aria-hidden="true"><use href="#i-rounded-star"></use></svg>
+                <span data-i18n="systemAndFiles"></span>
+              </span>
+              <span class="compatibility-toggle">
+                <span data-i18n="viewFormats"></span>
+                <svg aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </span>
+            </summary>
+            <div
+              class="format-guide-panel"
+              data-format-guide="contents"
+            >
+              <div class="hardware-column">
+                <h2><span data-i18n="hardware"></span></h2>
+                <div
+                  class="hardware-options"
+                  role="tablist"
+                  data-aria="hardware"
+                ></div>
+              </div>
+              <div
+                class="extension-column"
+                id="formats-contents"
+                role="tabpanel"
+                tabindex="0"
+              >
+                <h2><span data-i18n="fileExtensions"></span></h2>
+                <div class="extension-groups"></div>
+              </div>
+            </div>
+          </details>
+        </section>
+        <section
+          class="workspace"
+          id="audio-workspace"
+          hidden=""
+        >
+          <div class="workspace-start">
+            <header class="workspace-heading">
+              <div class="workspace-intro">
+                <h1 data-i18n="library"></h1>
+                <p data-i18n="audioDescription"></p>
+              </div>
+              <div
+                class="workspace-device"
+                aria-hidden="true"
+              >
+                <svg
+                  class="workspace-device-art"
+                  viewBox="0 0 480 440"
+                  width="480"
+                  height="440"
+                >
+                  <use href="#ctr-audio"></use></svg
+                ><svg
+                  class="workspace-star"
+                  viewBox="0 0 64 64"
+                >
+                  <use href="#i-rounded-star"></use>
+                </svg>
+              </div>
+            </header>
+            <div class="file-actions">
+              <button
+                type="button"
+                class="file-drop panel"
+                id="dropzone"
+                data-aria="drop"
+              >
+                <span
+                  class="drop-symbol"
+                  aria-hidden="true"
+                >
+                  <svg aria-hidden="true"><use href="#i-plus"></use></svg>
+                </span>
+                <span class="drop-copy">
+                  <span
+                    class="drop-title"
+                    id="drop-title"
+                    data-i18n="drop"
+                  ></span>
+                  <span
+                    class="drop-description"
+                    data-i18n="dropSub"
+                  ></span>
+                </span>
+              </button>
+              <button
+                class="button folder-action"
+                id="choose-audio-folder"
+              >
+                <svg aria-hidden="true"><use href="#i-folder"></use></svg>
+                <span data-i18n="chooseFolder"></span>
+              </button>
+            </div>
+          </div>
+
+          <input
+            type="file"
+            id="file-input"
+            multiple=""
+            hidden=""
+          />
+          <input
+            type="file"
+            id="audio-folder"
+            webkitdirectory=""
+            multiple=""
+            hidden=""
+          />
+          <div class="audio-workbench">
+            <div class="audio-library">
+              <section
+                class="panel library"
+                id="library"
+              >
+                <div class="library-heading">
+                  <h2>
+                    <span data-i18n="shelf"></span>
+                    <span
+                      id="library-total"
+                      class="count-pill"
+                    >
+                      0
+                    </span>
+                  </h2>
+                  <button
+                    class="button small"
+                    id="zip-btn"
+                    disabled=""
+                  >
+                    <svg><use href="#i-download"></use></svg>
+                    <span data-i18n="zip"></span>
+                  </button>
+                </div>
+                <div class="library-toolbar">
+                  <div
+                    class="tabs"
+                    role="tablist"
+                    data-aria="audioCategories"
+                  >
+                    <button
+                      class="tab active"
+                      role="tab"
+                      aria-selected="true"
+                      data-filter="all"
+                      data-i18n="all"
+                    ></button>
+                    <button
+                      class="tab"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="bgm"
+                      data-i18n="bgm"
+                    ></button>
+                    <button
+                      class="tab"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="sfx"
+                      data-i18n="sfx"
+                    ></button>
+                    <button
+                      class="tab"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="audio"
+                      data-i18n="audio"
+                    ></button>
+                    <button
+                      class="tab"
+                      role="tab"
+                      aria-selected="false"
+                      data-filter="sample"
+                      data-i18n="sample"
+                    ></button>
+                  </div>
+                  <label class="search">
+                    <svg><use href="#i-search"></use></svg>
+                    <input
+                      type="search"
+                      id="search"
+                      data-placeholder="search"
+                      data-aria="searchLabel"
+                    />
+                  </label>
+                </div>
+
+                <div
+                  class="track-table"
+                  role="table"
+                  data-aria="shelf"
+                >
+                  <div
+                    class="table-head"
+                    role="row"
+                  >
+                    <span>
+                      <input
+                        type="checkbox"
+                        id="select-all"
+                        data-aria="selectAll"
+                      />
+                    </span>
+                    <span></span>
+                    <span data-i18n="track"></span>
+                    <span
+                      class="type-col"
+                      data-i18n="type"
+                    ></span>
+                    <span
+                      class="format-col"
+                      data-i18n="format"
+                    ></span>
+                    <span
+                      class="time-col"
+                      data-i18n="duration"
+                    ></span>
+                    <span></span>
+                  </div>
+                  <div
+                    id="track-list"
+                    role="rowgroup"
+                  ></div>
+                  <div
+                    class="empty-state"
+                    id="empty"
+                  >
+                    <svg><use href="#i-music"></use></svg>
+                    <h3 data-i18n="empty"></h3>
+                    <p data-i18n="emptySub"></p>
+                  </div>
+                  <div
+                    class="empty-state"
+                    id="no-matches"
+                    hidden=""
+                  >
+                    <h3 data-i18n="noMatches"></h3>
+                    <button
+                      class="text-button"
+                      id="reset-search"
+                      data-i18n="resetSearch"
+                    ></button>
+                  </div>
+                </div>
+
+                <div class="library-footer">
+                  <span id="library-summary">0</span>
+                  <span data-i18n="statusHint"></span>
+                </div>
+                <div class="tracks-more">
+                  <button
+                    class="button secondary small"
+                    id="tracks-more"
+                    data-i18n="showMore"
+                    hidden=""
+                  ></button>
+                </div>
+              </section>
+              <details
+                class="panel file-drawer"
+                id="file-drawer"
+              >
+                <summary>
+                  <span data-i18n="files"></span>
+                  <span
+                    class="count-pill"
+                    id="file-total"
+                  >
+                    0
+                  </span>
+                </summary>
+                <div id="file-list"></div>
+                <div class="files-more">
+                  <button
+                    class="button secondary small"
+                    id="files-more"
+                    data-i18n="showMore"
+                    hidden=""
+                  ></button>
+                </div>
+              </details>
+            </div>
+            <section
+              class="studio-player panel"
+              id="main-player"
+              data-aria="audioPlayer"
+            >
+              <div class="player-face">
+                <div class="player-identity">
+                  <div class="player-meta">
+                    <h2
+                      id="now-name"
+                      data-i18n="nothingPlaying"
+                    ></h2>
+                    <p id="now-meta"></p>
+                    <span
+                      id="audio-details"
+                      class="audio-details"
+                    ></span>
+                  </div>
+                  <button
+                    class="button small player-save"
+                    id="player-export"
+                    disabled=""
+                  >
+                    <svg><use href="#i-download"></use></svg>
+                    <span data-i18n="export"></span>
+                  </button>
+                </div>
+                <div class="player-display">
+                  <div class="display-toolbar">
+                    <div
+                      class="visual-tabs"
+                      role="group"
+                      data-aria="visualization"
+                    >
+                      <button
+                        id="visual-spectrum"
+                        aria-pressed="true"
+                        data-i18n="spectrum"
+                      ></button>
+                      <button
+                        id="visual-wave"
+                        aria-pressed="false"
+                        data-i18n="waveform"
+                      ></button>
+                    </div>
+                    <div
+                      class="stereo-levels"
+                      data-aria="audioLevels"
+                    >
+                      <span>L</span>
+                      <div class="meter-track">
+                        <span id="meter-left"></span>
+                      </div>
+                      <span>R</span>
+                      <div class="meter-track">
+                        <span id="meter-right"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <canvas
+                    id="waveform"
+                    aria-hidden="true"
+                  ></canvas>
+                </div>
+                <div class="player-progress">
+                  <span id="elapsed">0:00</span>
+                  <input
+                    id="seek"
+                    type="range"
+                    min="0"
+                    max="60"
+                    value="0"
+                    step="0.01"
+                    data-aria="seek"
+                    disabled=""
+                  />
+                  <span id="total-time">—</span>
+                </div>
+              </div>
+
+              <div class="player-controls">
+                <div class="player-transport">
+                  <button
+                    class="icon-button"
+                    id="prev-btn"
+                    data-title="previous"
+                    disabled=""
+                  >
+                    <svg><use href="#i-prev"></use></svg>
+                  </button>
+                  <button
+                    class="skip-button"
+                    id="back-btn"
+                    data-title="backTen"
+                    disabled=""
+                  >
+                    −10
+                    <span>s</span>
+                  </button>
+                  <button
+                    class="play-main"
+                    id="play-btn"
+                    data-title="play"
+                    disabled=""
+                  >
+                    <svg><use href="#i-play"></use></svg>
+                  </button>
+                  <button
+                    class="skip-button"
+                    id="forward-btn"
+                    data-title="forwardTen"
+                    disabled=""
+                  >
+                    +10
+                    <span>s</span>
+                  </button>
+                  <button
+                    class="icon-button"
+                    id="next-btn"
+                    data-title="next"
+                    disabled=""
+                  >
+                    <svg><use href="#i-next"></use></svg>
+                  </button>
+                </div>
+                <div class="player-settings">
+                  <div
+                    class="player-modes"
+                    role="group"
+                    data-aria="playbackModes"
+                  >
+                    <button
+                      class="icon-button mode-button"
+                      id="shuffle-btn"
+                      aria-pressed="false"
+                      data-title="shuffle"
+                    >
+                      <svg><use href="#i-shuffle"></use></svg>
+                    </button>
+                    <button
+                      class="icon-button mode-button"
+                      id="loop-btn"
+                      aria-pressed="false"
+                      data-title="loop"
+                    >
+                      <svg><use href="#i-loop"></use></svg>
+                    </button>
+                    <button
+                      class="icon-button mode-button"
+                      id="autoplay-btn"
+                      aria-pressed="false"
+                      data-title="continuous"
+                    >
+                      <svg><use href="#i-autoplay"></use></svg>
+                    </button>
+                    <button
+                      class="icon-button"
+                      id="stop-btn"
+                      data-title="stop"
+                      disabled=""
+                    >
+                      <svg><use href="#i-stop"></use></svg>
+                    </button>
+                  </div>
+                  <label class="speed-control">
+                    <svg aria-hidden="true"><use href="#i-speed"></use></svg>
+                    <span
+                      class="sr-only"
+                      data-i18n="speed"
+                    ></span>
+                    <select
+                      id="playback-rate"
+                      data-aria="speed"
+                    >
+                      <option value="0.5">0.5×</option>
+                      <option value="0.75">0.75×</option>
+                      <option
+                        value="1"
+                        selected=""
+                      >
+                        1×
+                      </option>
+                      <option value="1.25">1.25×</option>
+                      <option value="1.5">1.5×</option>
+                      <option value="2">2×</option>
+                    </select>
+                  </label>
+                  <div class="player-volume">
+                    <button
+                      class="icon-button"
+                      id="mute-btn"
+                      data-title="mute"
+                      aria-pressed="false"
+                    >
+                      <svg><use href="#i-volume"></use></svg>
+                    </button>
+                    <input
+                      id="volume"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value="0.75"
+                      data-aria="volume"
+                    />
+                    <output
+                      id="volume-value"
+                      for="volume"
+                    >
+                      75%
+                    </output>
+                  </div>
+                </div>
+              </div>
+              <fieldset
+                class="cartridge-controls"
+                id="cartridge-controls"
+                hidden=""
+              >
+                <legend data-i18n="cartridgeControls"></legend>
+                <p data-i18n="cartridgeHint"></p>
+                <div class="cartridge-buttons">
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="2"
+                    data-title="cartridgeLeft"
+                  >
+                    ←
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="4"
+                    data-title="cartridgeUp"
+                  >
+                    ↑
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="8"
+                    data-title="cartridgeDown"
+                  >
+                    ↓
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="1"
+                    data-title="cartridgeRight"
+                  >
+                    →
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="16"
+                    data-title="cartridgeA"
+                  >
+                    A
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="32"
+                    data-title="cartridgeB"
+                  >
+                    B
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="64"
+                    data-title="cartridgeSelect"
+                  >
+                    SELECT
+                  </button>
+                  <button
+                    class="button small cartridge-button"
+                    type="button"
+                    data-cartridge-button="128"
+                    data-title="cartridgeStart"
+                  >
+                    START
+                  </button>
+                </div>
+              </fieldset>
+            </section>
+          </div>
+          <details
+            class="compatibility"
+            data-compatibility=""
+          >
+            <summary>
+              <span>
+                <svg aria-hidden="true"><use href="#i-rounded-star"></use></svg>
+                <span data-i18n="systemAndFiles"></span>
+              </span>
+              <span class="compatibility-toggle">
+                <span data-i18n="viewFormats"></span>
+                <svg aria-hidden="true"><use href="#i-chevron"></use></svg>
+              </span>
+            </summary>
+            <div
+              class="format-guide-panel"
+              data-format-guide="audio"
+            >
+              <div class="hardware-column">
+                <h2><span data-i18n="hardware"></span></h2>
+                <div
+                  class="hardware-options"
+                  role="tablist"
+                  data-aria="hardware"
+                ></div>
+              </div>
+              <div
+                class="extension-column"
+                id="formats-audio"
+                role="tabpanel"
+                tabindex="0"
+              >
+                <h2><span data-i18n="fileExtensions"></span></h2>
+                <div class="extension-groups"></div>
+              </div>
+            </div>
+          </details>
+        </section>
+        <footer class="app-footer">
+          <span class="footer-brand">
+            ROM
+            <span>Studio</span>
+          </span>
+          <button
+            class="text-button"
+            data-open="guide-dialog"
+            data-i18n="guide"
+          ></button>
+          <span
+            class="footer-decoration"
+            aria-hidden="true"
+          >
+            ✳
+          </span>
+        </footer>
+      </main>
+    </div>
+    <div
+      class="toast-stack"
+      id="toast-stack"
+      aria-live="polite"
+    ></div>
+    <dialog id="export-dialog">
+      <button
+        class="dialog-close icon-button"
+        data-close=""
+        data-title="close"
+      >
+        <svg><use href="#i-x"></use></svg>
+      </button>
+      <h2 data-i18n="exportTitle"></h2>
+      <p
+        class="dialog-intro"
+        data-i18n="exportIntro"
+      ></p>
+      <div class="export-track">
+        <span class="mini-album">
+          <svg><use href="#i-music"></use></svg>
+        </span>
+        <div>
+          <strong id="export-name"></strong>
+          <span id="export-meta"></span>
+        </div>
+      </div>
+      <form id="export-form">
+        <fieldset class="format-options">
+          <legend data-i18n="outputFormat"></legend>
+          <label>
+            <input
+              type="radio"
+              name="format"
+              value="mp3"
+              checked=""
+            />
+            <span>
+              <b>MP3</b>
+              <small data-i18n="mp3Desc"></small>
+            </span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="format"
+              value="wav"
+            />
+            <span>
+              <b>WAV</b>
+              <small data-i18n="wavDesc"></small>
+            </span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="format"
+              value="original"
+            />
+            <span>
+              <b data-i18n="original"></b>
+              <small data-i18n="originalDesc"></small>
+            </span>
+          </label>
+        </fieldset>
+        <div class="export-settings">
+          <label id="bitrate-field">
+            <span data-i18n="quality"></span>
+            <select name="bitrate">
+              <option value="128">128 kbps</option>
+              <option
+                value="192"
+                selected=""
+              >
+                192 kbps
+              </option>
+              <option value="320">320 kbps</option>
+            </select>
+          </label>
+          <label
+            id="whole-song-field"
+            class="whole-song-field"
+            hidden=""
+          >
+            <span data-i18n="wholeSong"></span>
+            <input
+              name="wholeSong"
+              type="checkbox"
+            />
+            <small data-i18n="wholeSongNote"></small>
+          </label>
+          <label id="duration-field">
+            <span data-i18n="renderTime"></span>
+            <span class="number-field">
+              <input
+                name="duration"
+                type="number"
+                min="1"
+                max="86400"
+                value="60"
+                required=""
+              />
+              <span data-i18n="seconds"></span>
+            </span>
+          </label>
+          <label id="fade-field">
+            <span data-i18n="fade"></span>
+            <span class="number-field">
+              <input
+                name="fade"
+                type="number"
+                min="0"
+                max="15"
+                value="2"
+              />
+              <span data-i18n="seconds"></span>
+            </span>
+          </label>
+        </div>
+        <p
+          class="small-note"
+          id="sequence-note"
+          data-i18n="sequenceNote"
+        ></p>
+        <p
+          class="small-note"
+          id="dependencies-note"
+          data-i18n="dependencies"
+        ></p>
+        <div
+          class="export-progress operation-progress"
+          id="audio-export-progress"
+          data-progress-state="indeterminate"
+          hidden=""
+        >
+          <div class="operation-progress-heading">
+            <span
+              class="progress-emblem"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 64 64"><use href="#i-rounded-star"></use></svg>
+            </span>
+            <span
+              id="audio-export-label"
+              data-progress-label
+              data-i18n="working"
+            ></span>
+            <output
+              data-progress-value
+              aria-hidden="true"
+            >
+              …
+            </output>
+          </div>
+          <div class="operation-progress-track">
+            <progress
+              id="audio-export-meter"
+              max="1"
+              aria-labelledby="audio-export-label"
+            ></progress>
+            <span
+              class="progress-shimmer"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <button
+            type="button"
+            class="text-button"
+            id="audio-export-cancel"
+            data-i18n="cancel"
+          ></button>
+        </div>
+        <div class="dialog-actions">
+          <button
+            type="button"
+            class="button"
+            data-close=""
+            data-i18n="cancel"
+          ></button>
+          <button
+            class="button primary"
+            type="submit"
+            id="save-btn"
+          >
+            <svg><use href="#i-download"></use></svg>
+            <span data-i18n="save"></span>
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog
+      id="guide-dialog"
+      aria-labelledby="guide-title"
+    >
+      <header class="guide-header">
+        <span
+          class="guide-emblem"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 64 64"><use href="#i-rounded-star"></use></svg>
+        </span>
+        <h2
+          id="guide-title"
+          data-i18n="guideTitle"
+        ></h2>
+        <button
+          class="dialog-close icon-button"
+          data-close=""
+          data-title="close"
+        >
+          <svg><use href="#i-x"></use></svg>
+        </button>
+      </header>
+      <div class="guide-body">
+        <div class="guide-steps">
+          <section class="guide-step guide-convert">
+            <div
+              class="guide-step-top"
+              aria-hidden="true"
+            >
+              <span class="guide-step-icon">
+                <svg><use href="#i-grid"></use></svg>
+              </span>
+              <span class="guide-step-number">01</span>
+            </div>
+            <h3 data-i18n="lab"></h3>
+            <p data-i18n="conversionGuide"></p>
+          </section>
+          <section class="guide-step guide-contents">
+            <div
+              class="guide-step-top"
+              aria-hidden="true"
+            >
+              <span class="guide-step-icon">
+                <svg><use href="#i-folder"></use></svg>
+              </span>
+              <span class="guide-step-number">02</span>
+            </div>
+            <h3 data-i18n="contentsTab"></h3>
+            <p data-i18n="contentsGuide"></p>
+          </section>
+          <section class="guide-step guide-audio">
+            <div
+              class="guide-step-top"
+              aria-hidden="true"
+            >
+              <span class="guide-step-icon">
+                <svg><use href="#i-music"></use></svg>
+              </span>
+              <span class="guide-step-number">03</span>
+            </div>
+            <h3 data-i18n="library"></h3>
+            <p data-i18n="audioGuide"></p>
+          </section>
+        </div>
+        <details class="guide-formats format-guide">
+          <summary>
+            <span>
+              <svg aria-hidden="true"><use href="#i-rounded-star"></use></svg>
+              <span data-i18n="compat"></span>
+            </span>
+            <svg
+              class="guide-chevron"
+              aria-hidden="true"
+            >
+              <use href="#i-chevron"></use>
+            </svg>
+          </summary>
+          <dl>
+            <dt>NDS / 3DS</dt>
+            <dd data-i18n="supportNintendo"></dd>
+            <dt>Wii / Wii U</dt>
+            <dd data-i18n="supportWii"></dd>
+            <dt>Game Boy</dt>
+            <dd data-i18n="supportGameBoy"></dd>
+            <dt>SNES</dt>
+            <dd data-i18n="supportSnes"></dd>
+            <dt>PS1 / PS2</dt>
+            <dd data-i18n="supportPlayStation"></dd>
+          </dl>
+        </details>
+        <section class="guide-storage">
+          <span
+            class="guide-storage-icon"
+            aria-hidden="true"
+          >
+            <svg><use href="#i-download"></use></svg>
+          </span>
+          <div>
+            <h3 data-i18n="largeFilesTitle"></h3>
+            <p data-i18n="largeFilesGuide"></p>
+          </div>
+        </section>
+      </div>
+    </dialog>
+    <aside
+      class="mini-player"
+      id="mini-player"
+      hidden=""
+      data-aria="audioPlayer"
+    >
+      <button
+        class="mini-track"
+        id="mini-open"
+        data-title="showPlayer"
+      >
+        <svg><use href="#i-music"></use></svg>
+        <span id="mini-name"></span>
+      </button>
+      <span id="mini-time">0:00</span>
+      <button
+        class="icon-button"
+        id="mini-prev"
+        data-title="previous"
+      >
+        <svg><use href="#i-prev"></use></svg>
+      </button>
+      <button
+        class="play-main"
+        id="mini-play"
+        data-title="play"
+      >
+        <svg><use href="#i-play"></use></svg>
+      </button>
+      <button
+        class="icon-button"
+        id="mini-next"
+        data-title="next"
+      >
+        <svg><use href="#i-next"></use></svg>
+      </button>
+    </aside>
+    <script
+      type="module"
+      src="app.js"
+    ></script>
+  </body>
+</html>

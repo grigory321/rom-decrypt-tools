@@ -1,0 +1,33 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bin binary
+*.iso binary
+*.nds binary
+*.sdat binary
+*.swav binary
+*.mp3 binary
+*.woff2 binary
+*.zip binary
+*.tgz binary
+
+*.gb binary
+*.gbc binary
+*.gbs binary
+
+*.psf binary
+*.psf2 binary
+*.psflib binary
+*.psf2lib binary
+*.minipsf binary
+*.minipsf2 binary
+*.sfc binary
+*.smc binary
+
+*.adx binary
+*.hca binary
+*.bwav binary
+*.idsp binary
+*.awb binary
+*.aiff binary
+*.aifc binary
+*.au binary

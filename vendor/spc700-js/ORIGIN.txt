@@ -1,0 +1,9 @@
+spc700-js 0.1.0-dev.0
+Author: Mitsutaka Okazaki / digital-sound-antiques
+License: ISC; see LICENSE.txt.
+Upstream: https://github.com/digital-sound-antiques/spc700-js
+Revision: 2d9ce62c2e3ea719e0ba804f91880d8ec8c23da7
+
+src/ contains the unmodified TypeScript source at this revision.
+The browser runtime in public/vendor/spc700-js/ is generated from this source
+without WebAssembly. The adapter uses native 32000 Hz output and ID666/xid6 tags.

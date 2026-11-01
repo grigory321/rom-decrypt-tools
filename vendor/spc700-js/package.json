@@ -1,0 +1,41 @@
+{
+  "name": "spc700-js",
+  "version": "0.1.0-dev.0",
+  "description": "SNES SPC700 / S-DSP sound file (.spc) player library for JavaScript",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "package.json",
+    "LICENSE.txt",
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "test": "node --test test/"
+  },
+  "keywords": [
+    "snes",
+    "spc",
+    "spc700",
+    "s-dsp",
+    "chiptune",
+    "audio"
+  ],
+  "author": "Mitsutaka Okazaki",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  }
+}
